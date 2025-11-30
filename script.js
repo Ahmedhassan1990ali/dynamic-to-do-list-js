@@ -28,12 +28,19 @@ document.addEventListener('DOMContentLoaded', function(){
         taskList.appendChild(li);
     }
 
+    function saveTaskToStorage(taskText) {
+        const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+        storedTasks.push(taskText);
+        localStorage.setItem('tasks', JSON.stringify(storedTasks));
+    }
+
     function addTask(){
         const taskText = taskInput.value.trim();
         if (taskText === ""){
             window.alert("enter a task");
         } else {
             createTaskElement(taskText);
+            saveTaskToStorage(taskText);
             taskInput.value = "";
         }
     }
