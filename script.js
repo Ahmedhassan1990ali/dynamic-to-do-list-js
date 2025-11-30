@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function(){
         removebtn.classList.add("remove-btn");
         removebtn.onclick = function(){
             taskList.removeChild(li);
+            removeTaskFromStorage(taskText);
         };
 
         li.appendChild(removebtn);
@@ -43,6 +44,12 @@ document.addEventListener('DOMContentLoaded', function(){
             saveTaskToStorage(taskText);
             taskInput.value = "";
         }
+    }
+
+    function removeTaskFromStorage(taskText) {
+        const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+        const updatedTasks = storedTasks.filter(task => task !== taskText);
+        localStorage.setItem('tasks', JSON.stringify(updatedTasks));
     }
 
 
