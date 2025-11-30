@@ -7,9 +7,26 @@ document.addEventListener('DOMContentLoaded', function(){
         const taskText = taskInput.value.trim();
         if (taskText === ""){
             window.alert("enter a task");
+        } else {
+            const li = document.createElement('li');
+            li.textContent = taskText;
+
+            const removebtn = document.createElement('button');
+            removebtn.textContent = "Remove";
+            removebtn.className = "remove-btn";
+            removebtn.onclick = function(){
+                taskList.removeChild(li);
+            };
+
+            li.appendChild(removebtn);
+            taskList.appendChild(li);
+
+            taskInput.value = "";
+
+            
         }
     }
-    
 
-    )
+    
+    
 });
